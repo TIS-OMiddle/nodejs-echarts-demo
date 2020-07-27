@@ -4,15 +4,13 @@ import fs from 'fs';
 import { JSDOM } from 'jsdom';
 import { svg2png } from 'svg-png-converter';
 
-// @ts-ignore
-echarts.setCanvasCreator(() => {
+(echarts as any).setCanvasCreator(() => {
   return new Canvas(100, 100);
 });
 const { window } = new JSDOM();
-// @ts-ignore
-global.window = window;
-global.navigator = window.navigator;
-global.document = window.document;
+globalThis.window = window as any;
+globalThis.navigator = window.navigator;
+globalThis.document = window.document;
 
 async function doit() {
   const root = document.createElement('div');
@@ -31,7 +29,7 @@ async function doit() {
     },
     series: [
       {
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        data: [820, 932, 901, 934, 1290, 1330, 120],
         type: 'line',
       },
     ],
