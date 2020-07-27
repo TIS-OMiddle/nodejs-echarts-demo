@@ -8,9 +8,9 @@ import { svg2png } from 'svg-png-converter';
   return new Canvas(100, 100);
 });
 const { window } = new JSDOM();
-globalThis.window = window as any;
-globalThis.navigator = window.navigator;
-globalThis.document = window.document;
+global.window = window as any;
+global.navigator = window.navigator;
+global.document = window.document;
 
 async function doit() {
   const root = document.createElement('div');
